@@ -1,0 +1,7 @@
+{
+    "COMPANY_NAME": "TestComp",
+    "TOOL": "TestTool",
+    "RELEASE": "r1",
+    "COMMIT_ID": "c123",
+    "VERSION": "v0.3"
+}

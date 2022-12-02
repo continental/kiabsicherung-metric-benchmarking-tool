@@ -1,0 +1,8 @@
+.devcontainer
+kia_mbt.egg-info
+__pycache__
+.vscode
+*.idea
+playground/*
+output/*
+addons/kia_sotif/output/*

@@ -1,0 +1,108 @@
+{
+    "io": {
+        "data_path": "/mnt/share/kia/data",
+        "predictions_path": "/mnt/share/kia",
+        "results_folder": "Opel-SSD-r3-v2",
+        "backend": "fs",
+        "sequences": [
+            "mv_results_sequence_0064_224b973925d84f208a377fda185d842f",
+            "bit_results_sequence_0174-54c7c84860b442eca995b153754b8c37"
+        ],
+        "minio_endpoint": "endpoint",
+        "minio_bucket": "bucket_name",
+        "minio_use_proxy": true
+    },
+    "correlate": {
+        "iou_threshold": 0.5,
+        "matching_type": "complete",
+        "clip_truncated_boxes": true,
+        "optional_arguments:": {
+            "confidence_col": "confidence",
+            "annotation_bb_center_col": "center",
+            "annotation_bb_size_col": "size",
+            "detection_bb_center_col": "center",
+            "detection_bb_size_col": "size"
+        }
+    },
+    "filter": {
+        "annotation_filter": {
+            "class_id == human": [
+                "class_id",
+                "==",
+                "human"
+            ],
+            "occlusion_est < 0.8": [
+                "occlusion_est",
+                "<",
+                0.8
+            ],
+            "within_brake_dist_30kph == True": [
+                "within_brake_dist_30kph",
+                "==",
+                true
+            ],
+            "semantic_area in ['road', 'crossing', 'sidewalk', 'sidewalk_near_crossing']": [
+                "semantic_area",
+                "in",
+                [
+                    "road",
+                    "crossing",
+                    "sidewalk",
+                    "sidewalk_near_crossing"
+                ]
+            ],
+            "size[0] > 33px": [
+                "size[0]",
+                ">",
+                33
+            ]
+        },
+        "prediction_filter": {},
+        "matching_filter": {}
+    },
+    "metrics": {
+        "calculate": [
+            1001,
+            1003,
+            1027,
+            1028,
+            1029,
+            1030,
+            1031,
+            1040
+        ],
+        "parameters": {
+            "1001": {
+                "calculate_per_class": true
+            },
+            "1003": {
+                "calculate_per_class": true,
+                "ap_integration_mode": "11point",
+                "confidence_col": "confidence"
+            },
+            "1027": {
+                "calculate_per_class": true
+            },
+            "1028": {
+                "calculate_per_class": true
+            },
+            "1029": {
+                "calculate_per_class": true
+            },
+            "1030": {
+                "calculate_per_class": true
+            },
+            "1031": {
+                "calculate_per_class": true
+            },
+            "1040": {
+                "calculate_per_class": true,
+                "confidence_col": "confidence"
+            }
+        }
+    },
+    "writer": {
+        "version_file": "version.json",
+        "output_path": "/mnt/share/kia"
+    }
+}
